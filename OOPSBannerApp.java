@@ -1,52 +1,59 @@
+import java.util.*;
+
 public class OOPSBannerApp {
 
-    // O pattern
-    public static String[] getOPattern() {
-        return new String[]{
-            " *** ",
-            "*   *",
-            "*   *",
-            "*   *",
-            " *** "
-        };
-    }
+    public static Map<Character, String[]> getCharacterPatterns() {
 
-    // P pattern
-    public static String[] getPPattern() {
-        return new String[]{
-            "**** ",
-            "*   *",
-            "**** ",
-            "*    ",
-            "*    "
-        };
-    }
+        Map<Character, String[]> map = new HashMap<>();
 
-    // S pattern
-    public static String[] getSPattern() {
-        return new String[]{
-            " ****",
-            "*    ",
-            " *** ",
-            "    *",
-            "**** "
-        };
+        map.put('O', new String[]{
+                " *** ",
+                "*   *",
+                "*   *",
+                "*   *",
+                " *** "
+        });
+
+        map.put('P', new String[]{
+                "**** ",
+                "*   *",
+                "**** ",
+                "*    ",
+                "*    "
+        });
+
+        map.put('S', new String[]{
+                " ****",
+                "*    ",
+                " *** ",
+                "    *",
+                "**** "
+        });
+
+        return map;
     }
 
     public static void main(String[] args) {
 
-        String[] oPattern = getOPattern();
-        String[] pPattern = getPPattern();
-        String[] sPattern = getSPattern();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter text: ");
+        String text = sc.next().toUpperCase();
 
-        // Print OOPS
-        for (int i = 0; i < oPattern.length; i++) {
-            System.out.println(
-                oPattern[i] + "  " +
-                oPattern[i] + "  " +
-                pPattern[i] + "  " +
-                sPattern[i]
-            );
+        Map<Character, String[]> patterns = getCharacterPatterns();
+
+        for (int i = 0; i < 5; i++) {
+
+            for (char c : text.toCharArray()) {
+
+                if (patterns.containsKey(c)) {
+                    System.out.print(patterns.get(c)[i] + "  ");
+                }
+
+            }
+
+            System.out.println();
         }
+
+        sc.close();
     }
 }
